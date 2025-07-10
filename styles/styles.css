@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    color: white;
+    text-align: center;
+}
+header, footer{
+    background-color: #1f1f1f;
+    height: 100px;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+main{
+    background-color: black;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.book-section{
+    background-color: #0d3240;
+    border-radius: 10px;
+    height: 400px;
+    width: 250px;
+    padding: 10px;
+}
+h1{
+}
+.table{
+    gap: 10px;
+}
+input{
+    color: black;
+}
