@@ -18,12 +18,14 @@ main{
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    gap: 33px;
+    padding: 33px;
 }
 .book-section{
     background-color: #0d3240;
     border-radius: 10px;
-    height: 400px;
-    width: 250px;
+    height: fit-content;
+    min-width: 350px;
     padding: 10px;
 }
 h1{
@@ -33,4 +35,37 @@ h1{
 }
 input{
     color: black;
+}
+#comment-section{
+    font-size: 8px;
+}
+img{
+    width: 20px;
+    height: 20px;
+}
+.comment-section{
+    max-height: 200px;
+    word-wrap: break-word;
+    overflow: scroll;
+}
+.input-line{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.book-img{
+    width: 100px;
+    height: 100px;
+}
+.price-likes{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.liked{
+    display: none;
+}
+.not-liked{
+    display: none;
 }
