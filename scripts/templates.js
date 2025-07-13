@@ -1,28 +1,41 @@
 function bookTemplate(i) {
   return `
-  <div class="book-section">
+<div class="book-section">
     <div>
         <h2>${books[i].name}</h2>
-        <div class="book-img"><img></div>
-        <div class="price-likes"><p>${books[i].price} </p><br><p>${books[i].likes} Likes</p><img class="liked"><img class="not-liked"><br></div>
+        <div class="book-img">
+            <img src="book-favicon.png">
+        </div>
+        <div class="price-likes">
+            <div>
+                <p style="color:red">${books[i].price} $</p>
+            </div>
+            <div class="likes">
+                <p>${books[i].likes} Likes</p> <p style="color:grey; cursor:pointer" id="not-liked${i}" onclick="toggleLiked(i)">&#10084</p><p style="color:red; cursor:pointer" class="d_none" id="liked${i}" onclick="toggleUnLiked(i)">&#10084</p>
+            </div>
+        </div>
+        <br>
         <div class="table">
             <p>Author: ${books[i].author}</p> <br>
             <p>Erscheinungsjahr: ${books[i].publishedYear}</p> <br>
             <p>Genre: ${books[i].genre}</p> <br>
         </div>    
-            <h3>Kommentare</h3><br>
+            <h3>Kommentare:</h3><br>
     </div>
-    <div class="comment-section">
-    </div>
+        <div class="comment-section">
+        </div>
     <br>
     
-    <div class="input-line"><input type="text" placeholder="Schreibe dein Kommentar"></input><img src="paper-plane.png" alt="absenden" onclick="submit()"></div>
+        <div class="input-line">
+            <input type="text" placeholder="Schreibe dein Kommentar" class="input" id="input${i}"/>
+            <img src="paper-plane.png" class="small-img" alt="absenden" onclick="addComment(${i})">
+        </div>
 </div>
    `;
 }
 
 function commentTemplate(i, j) {
   return `
-    <p>${books[i].comments[j].name}:</p><p>${books[i].comments[j].comment}</p><br>
+    <p>${books[i].comments[j].name}: ${books[i].comments[j].comment}</p><br>
     `;
 }

@@ -1,7 +1,5 @@
 *{
     margin: 0;
-    color: white;
-    text-align: center;
 }
 header, footer{
     background-color: #1f1f1f;
@@ -10,25 +8,29 @@ header, footer{
     justify-content: center;
     align-items: center;
     padding: 30px;
+    text-align: center;
+    color: white;
 }
 main{
     background-color: black;
     height: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    gap: 33px;
+    gap: 10px;
     padding: 33px;
+    flex-wrap: wrap;    
+    color: white;
 }
 .book-section{
     background-color: #0d3240;
     border-radius: 10px;
-    height: fit-content;
-    min-width: 350px;
+    height: 600px;
+    width: 400px;
     padding: 10px;
 }
-h1{
+h1, h2{
+    text-align: center;
 }
 .table{
     gap: 10px;
@@ -39,33 +41,52 @@ input{
 #comment-section{
     font-size: 8px;
 }
-img{
+.small-img{
     width: 20px;
     height: 20px;
+}
+.small-img:hover{
+    cursor: pointer;
 }
 .comment-section{
     max-height: 200px;
     word-wrap: break-word;
     overflow: scroll;
+    height: 100%;
+    background-color: #184c60;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 .input-line{
     display: flex;
-    align-items: center;
     justify-content: center;
     gap: 10px;
 }
 .book-img{
-    width: 100px;
-    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.book-img img{
+    width: 50px;
+    height: 50px;
+    padding: 10px;
 }
 .price-likes{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-weight: bold;
 }
-.liked{
-    display: none;
+.input{
+    width: 100%;
 }
-.not-liked{
+.likes{
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+.d_none{
     display: none;
 }
