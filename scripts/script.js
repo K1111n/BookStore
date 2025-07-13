@@ -1,14 +1,30 @@
 function renderBook() {
+  let bookRef = document.getElementById("book-section");
+  bookRef.innerHTML = "";
   for (let i = 0; i < books.length; i++) {
-    let bookRef = document.getElementById("book-section");
     bookRef.innerHTML += bookTemplate(i);
+    renderHearts(i);
   }
+  renderCommentSection();
+}
+
+function renderCommentSection() {
   let commentSection = document.getElementsByClassName("comment-section");
   for (let i = 0; i < books.length; i++) {
     let commentRef = commentSection[i];
     for (let j = 0; j < books[i].comments.length; j++) {
       commentRef.innerHTML += commentTemplate(i, j);
     }
+  }
+}
+
+function renderHearts(i) {
+  if (books[i].liked == true) {
+    let greyHeart = document.getElementById(`not-liked${i}`);
+    greyHeart.classList.add("d_none");
+  } else {
+    let redHeart = document.getElementById(`liked${i}`);
+    redHeart.classList.add("d_none");
   }
 }
 
@@ -28,9 +44,21 @@ function addComment(i) {
 }
 
 function toggleLiked(i) {
-  document.getElementsByClassId(`liked${i}`).toggle.d_none;
+  let redHeart = document.getElementById(`liked${i}`);
+  redHeart.classList.toggle("d_none");
+  let greyHeart = document.getElementById(`not-liked${i}`);
+  greyHeart.classList.toggle("d_none");
+  books[i].likes += 1;
+  books[i].liked = true;
+  renderBook();
 }
 
 function toggleUnLiked(i) {
-  document.getElementsByClassId(`not-liked${i}`).toggle.d_none;
+  let greyHeart = document.getElementById(`not-liked${i}`);
+  greyHeart.classList.toggle("d_none");
+  let redHeart = document.getElementById(`liked${i}`);
+  redHeart.classList.toggle("d_none");
+  books[i].likes -= 1;
+  books[i].liked = false;
+  renderBook();
 }

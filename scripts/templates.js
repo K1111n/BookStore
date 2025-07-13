@@ -1,5 +1,6 @@
 function bookTemplate(i) {
-  return `
+  return /*html*/ `  
+  
 <div class="book-section">
     <div>
         <h2>${books[i].name}</h2>
@@ -11,7 +12,7 @@ function bookTemplate(i) {
                 <p style="color:red">${books[i].price} $</p>
             </div>
             <div class="likes">
-                <p>${books[i].likes} Likes</p> <p style="color:grey; cursor:pointer" id="not-liked${i}" onclick="toggleLiked(i)">&#10084</p><p style="color:red; cursor:pointer" class="d_none" id="liked${i}" onclick="toggleUnLiked(i)">&#10084</p>
+                <p>${books[i].likes} Likes</p> <p style="color:grey; cursor:pointer" id="not-liked${i}" onclick="toggleLiked(${i})">&#10084</p><p style="color:red; cursor:pointer" id="liked${i}" onclick="toggleUnLiked(${i})">&#10084</p>
             </div>
         </div>
         <br>
@@ -35,7 +36,7 @@ function bookTemplate(i) {
 }
 
 function commentTemplate(i, j) {
-  return `
+  return /*html*/ `
     <p>${books[i].comments[j].name}: ${books[i].comments[j].comment}</p><br>
     `;
 }
