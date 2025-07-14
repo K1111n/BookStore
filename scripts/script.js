@@ -2,6 +2,7 @@ function renderBook() {
   let bookRef = document.getElementById("book-section");
   bookRef.innerHTML = "";
   for (let i = 0; i < books.length; i++) {
+    get_ToLocalStorage_Likes_Hearts_Comments(i);
     bookRef.innerHTML += bookTemplate(i);
     renderHearts(i);
   }
@@ -36,13 +37,12 @@ function addComment(i) {
   } else {
     let newComment = { name: "You", comment: input };
     books[i].comments.push(newComment);
+    save_ToLocalStorage_Likes_Hearts_Comments(i);
     let commentSection = document.getElementsByClassName("comment-section");
     let commentRef = commentSection[i];
     commentRef.innerHTML += commentTemplate(i, books[i].comments.length - 1);
     inputRef.value = "";
   }
-  saveToLocalStorage_Comments(i);
-  getToLocalStorage_Comments(i);
 }
 
 function toggleLiked(i) {
@@ -52,6 +52,7 @@ function toggleLiked(i) {
   greyHeart.classList.toggle("d_none");
   books[i].likes += 1;
   books[i].liked = true;
+  save_ToLocalStorage_Likes_Hearts_Comments(i);
   renderBook();
 }
 
@@ -62,23 +63,30 @@ function toggleUnLiked(i) {
   redHeart.classList.toggle("d_none");
   books[i].likes -= 1;
   books[i].liked = false;
+  save_ToLocalStorage_Likes_Hearts_Comments(i);
   renderBook();
 }
 
-function saveToLocalStorage_Comments(i) {
-  let inputRef = document.getElementById(`input${i}`);
-  let input = inputRef.value;
+function save_ToLocalStorage_Likes_Hearts_Comments(i) {
   localStorage.setItem(
-    `book[${i}].comments`,
-    JSON.stringify({ name: "You", comment: input })
+    `books[${i}].comments`,
+    JSON.stringify(books[i].comments)
   );
+  localStorage.setItem(`books[${i}].likes`, JSON.stringify(books[i].likes));
+  localStorage.setItem(`books[${i}].liked`, JSON.stringify(books[i].liked));
 }
 
-function getToLocalStorage_Comments(i) {
-  let inputRef = document.getElementById(`input${i}`);
-  let input = inputRef.value;
-  let myArrComments = JSON.parse(localStorage.getItem(`book[${i}].comments`));
-  if (myArrComments != null) {
-    myArrComments = { name: "You", comment: input };
+function get_ToLocalStorage_Likes_Hearts_Comments(i) {
+  let commentsStorage = localStorage.getItem(`books[${i}].comments`);
+  if (commentsStorage) {
+    books[i].comments = JSON.parse(commentsStorage);
+  }
+  let likesStorage = localStorage.getItem(`books[${i}].likes`);
+  if (likesStorage) {
+    books[i].likes = JSON.parse(likesStorage);
+  }
+  let likedStorage = localStorage.getItem(`books[${i}].liked`);
+  if (likedStorage) {
+    books[i].liked = JSON.parse(likedStorage);
   }
 }
