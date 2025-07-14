@@ -41,6 +41,8 @@ function addComment(i) {
     commentRef.innerHTML += commentTemplate(i, books[i].comments.length - 1);
     inputRef.value = "";
   }
+  saveToLocalStorage_Comments(i);
+  getToLocalStorage_Comments(i);
 }
 
 function toggleLiked(i) {
@@ -61,4 +63,22 @@ function toggleUnLiked(i) {
   books[i].likes -= 1;
   books[i].liked = false;
   renderBook();
+}
+
+function saveToLocalStorage_Comments(i) {
+  let inputRef = document.getElementById(`input${i}`);
+  let input = inputRef.value;
+  localStorage.setItem(
+    `book[${i}].comments`,
+    JSON.stringify({ name: "You", comment: input })
+  );
+}
+
+function getToLocalStorage_Comments(i) {
+  let inputRef = document.getElementById(`input${i}`);
+  let input = inputRef.value;
+  let myArrComments = JSON.parse(localStorage.getItem(`book[${i}].comments`));
+  if (myArrComments != null) {
+    myArrComments = { name: "You", comment: input };
+  }
 }

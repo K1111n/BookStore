@@ -51,7 +51,7 @@ input{
 .comment-section{
     max-height: 200px;
     word-wrap: break-word;
-    overflow: scroll;
+    overflow-y: scroll;
     height: 100%;
     background-color: #184c60;
     padding-top: 5px;
